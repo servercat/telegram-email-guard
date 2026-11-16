@@ -2,6 +2,8 @@
 
 [中文首页 / Chinese](../README.md) · [English](../README.en.md)
 
+先阅读[准备清单 / Prerequisites checklist](PREREQUISITES.md)，也可使用 [AI Agent 一键部署指南 / Automated deployment guide](AI_AGENT_DEPLOY.md)。
+
 ## 前提 · Prerequisites
 
 准备 HTTPS 域名、Docker Compose、Telegram Bot、已验证的 Resend 发信域名和 PostgreSQL 配置。创建 Google reCAPTCHA v2 复选框密钥，注册实际 Mini App 域名。生产示例使用 Node.js 24。

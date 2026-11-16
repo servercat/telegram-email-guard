@@ -13,3 +13,5 @@ test-results/
 *.sql.gz
 backup*.sql
 docs/resend-test-result.json
+
+.deploy-test-*/

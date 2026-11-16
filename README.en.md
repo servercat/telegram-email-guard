@@ -55,10 +55,29 @@ Defaults: 15-minute total deadline, 5-minute OTP lifetime, 60-second resend cool
 ## Validation and limitations
 
 - The owner completed the real join → email delivery → OTP → permission-restoration flow with a regular account. reCAPTCHA was also tested successfully in Telegram on 2026-11-17.
-- 25 automated tests and the TypeScript/Vite build pass.
+- 26 automated tests and the TypeScript/Vite build pass.
 - Telegram rejects native `sendWidget` for the current Bot with `INPUT_MEDIA_WIDGET_NOT_ALLOWED`. Production falls back to a **branded guide image and an official `web_app` button**. Native templates and the preferred native-send path remain in the source. Widget browser screenshots do not demonstrate native Telegram availability.
 - Documentation, welcome text and selected guidance are bilingual. Full Mini App language switching is not implemented.
 - Durable outbox processing, comprehensive business auditing, retention cleanup and large-scale failure testing remain on the roadmap. See [development status](docs/DEVELOPMENT_STATUS.md).
+
+## Demo and deployment prerequisites
+
+**Demo entry: [Affyun public group](https://t.me/affyuncom)**. Join and follow the welcome message into the private Bot chat to try CAPTCHA, email OTP and permission restoration. This is a live community; do not run bulk tests or post spam.
+
+Prepare a **VPS, domain/DNS, Telegram Bot and supergroup, Resend account and Google reCAPTCHA v2 keys**. PostgreSQL is included in Compose.
+
+- [Prerequisites checklist](docs/PREREQUISITES.md): suggested server size, accounts, keys, permissions, networking and provider costs.
+- [AI Agent deployment guide](docs/AI_AGENT_DEPLOY.md): copyable task prompt, preflight, automated tests/build, webhook and menu setup.
+
+```sh
+npm ci
+npm run deploy -- --init   # First-time setup; then fill provider values
+npm run deploy -- --check
+npm run deploy -- --deploy --mode dedicated
+```
+
+Use nginx mode on existing Nginx hosts. Account registration, domain ownership checks and human challenges require your participation; see the Agent guide.
+
 
 ## Run locally
 

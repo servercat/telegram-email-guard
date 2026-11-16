@@ -55,10 +55,29 @@ flowchart LR
 ## 已验证与限制
 
 - 已部署并由普通账号完成真实入群、邮件投递、OTP 与权限恢复测试；reCAPTCHA 亦由项目所有者在 Telegram 内确认测试通过（2026-11-17）。
-- 当前 25 项自动测试通过，TypeScript 与 Vite 构建通过。
+- 当前 26 项自动测试通过，TypeScript 与 Vite 构建通过。
 - 当前 Bot 的原生 `sendWidget` 请求被 Telegram 拒绝，返回 `INPUT_MEDIA_WIDGET_NOT_ALLOWED`。生产使用**品牌引导图片 + 官方 `web_app` 按钮**，保留原生 Widget 模板与优先尝试路径。浏览器 Widget 截图不代表原生功能已获 Telegram 支持。
 - 中英文覆盖项目文档、群欢迎文案及验证引导等部分界面；完整 Mini App 多语言切换尚未实现。
 - outbox、完整业务审计、过期数据清理与大规模故障演练仍待完善。详见[开发状态](docs/DEVELOPMENT_STATUS.md)。
+
+## 体验演示与部署准备
+
+**演示入口：[Affyun 公开群](https://t.me/affyuncom)**。加入后按欢迎提示进入 Bot 私聊，体验人机验证、邮箱 OTP 和权限恢复。此为实际社区，请勿批量测试或发送垃圾内容。
+
+部署需准备 **VPS、域名与 DNS、Telegram Bot 和超级群、Resend 邮件服务、Google reCAPTCHA v2**。PostgreSQL 随 Compose 启动。
+
+- [完整部署准备清单](docs/PREREQUISITES.md)：服务器建议配置、账户、密钥、权限、网络和服务费用说明。
+- [AI Agent 一键部署与引导](docs/AI_AGENT_DEPLOY.md)：可复制任务提示词、自动配置检查、测试构建、Webhook 与菜单设置。
+
+```sh
+npm ci
+npm run deploy -- --init   # 首次生成配置，然后填写服务商信息
+npm run deploy -- --check
+npm run deploy -- --deploy --mode dedicated
+```
+
+已有 Nginx 使用 nginx 模式；账户注册、DNS 所有权验证和真人挑战由您配合完成。详细步骤见 Agent 指南。
+
 
 ## 本地运行
 
