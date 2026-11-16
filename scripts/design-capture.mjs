@@ -1,0 +1,3 @@
+import {spawnSync} from 'node:child_process';import {mkdirSync,writeFileSync} from 'node:fs';
+mkdirSync('docs/design',{recursive:true});
+for(const [file,view] of [['widget-main','widget-WAITING'],['widget-states','widget-states'],['miniapp-email','mini-EMAIL'],['miniapp-otp','mini-OTP'],['miniapp-success','mini-SUCCESS'],['miniapp-error','mini-OTP_ERROR']]){const r=spawnSync('.cache/moli/moli.exe',['fetch','--layout','--dump','screenshot_full','--wait-selector','.hero-icon','--timeout-ms','12000',`http://127.0.0.1:5173/?view=${view}`],{maxBuffer:30000000});if(r.status!==0)throw Error(r.stderr.toString());writeFileSync(`docs/design/${file}.png`,r.stdout);console.log(file,r.stdout.length)}

@@ -1,0 +1,12 @@
+{
+  "renderer": "Moli CDP",
+  "passed": [
+    "invalid email",
+    "send through local API",
+    "wrong OTP feedback",
+    "correct OTP",
+    "permission restoration polling",
+    "44 state/theme screenshots"
+  ],
+  "pageErrors": []
+}

@@ -1,0 +1,15 @@
+# Existing host Nginx owns ports 80/443. Run with:
+# docker compose -f docker-compose.yml -f deploy/compose.server.yml up -d app postgres
+services:
+  app:
+    build:
+      context: .
+      dockerfile: deploy/Dockerfile.server
+    ports:
+      - '127.0.0.1:3101:3001'
+    mem_limit: 384m
+    cpus: 0.5
+  postgres:
+    mem_limit: 192m
+    cpus: 0.25
+    command: ['postgres', '-c', 'shared_buffers=32MB', '-c', 'max_connections=20']

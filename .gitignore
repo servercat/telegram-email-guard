@@ -1,0 +1,15 @@
+node_modules/
+dist/
+.env
+*.log
+.cache/
+test-results/
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.sql.gz
+backup*.sql
+docs/resend-test-result.json

@@ -1,0 +1,11 @@
+{
+  "renderer": "Moli browser with TelegramWidget bridge stub",
+  "states": 7,
+  "themes": 2,
+  "passed": [
+    "chatDataChanged redraw",
+    "refresh request",
+    "no input controls"
+  ],
+  "limitation": "Not executed in Telegram native QuickJS sandbox"
+}
