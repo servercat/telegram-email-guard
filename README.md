@@ -55,7 +55,7 @@ flowchart LR
 ## 已验证与限制
 
 - 已部署并由普通账号完成真实入群、邮件投递、OTP 与权限恢复测试；reCAPTCHA 亦由项目所有者在 Telegram 内确认测试通过（2026-11-17）。
-- 当前 27 项自动测试通过，TypeScript 与 Vite 构建通过。
+- 当前 28 项自动测试通过，TypeScript 与 Vite 构建通过。
 - 当前 Bot 的原生 `sendWidget` 请求被 Telegram 拒绝，返回 `INPUT_MEDIA_WIDGET_NOT_ALLOWED`。生产使用**品牌引导图片 + 官方 `web_app` 按钮**，保留原生 Widget 模板与优先尝试路径。浏览器 Widget 截图不代表原生功能已获 Telegram 支持。
 - 中英文覆盖项目文档、群欢迎文案及验证引导等部分界面；完整 Mini App 多语言切换尚未实现。
 - outbox、完整业务审计、过期数据清理与大规模故障演练仍待完善。详见[开发状态](docs/DEVELOPMENT_STATUS.md)。

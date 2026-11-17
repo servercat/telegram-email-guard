@@ -5,3 +5,5 @@ CREATE TABLE IF NOT EXISTS email_send_logs(id bigserial PRIMARY KEY,user_id bigi
 CREATE INDEX IF NOT EXISTS email_rate_idx ON email_send_logs(email_hash,created_at);
 CREATE TABLE IF NOT EXISTS audit_logs(id bigserial PRIMARY KEY,session_id uuid,event text NOT NULL,created_at timestamptz NOT NULL DEFAULT now());
 CREATE TABLE IF NOT EXISTS consumed_captcha_tokens(digest text PRIMARY KEY,created_at timestamptz NOT NULL DEFAULT now());
+
+CREATE TABLE IF NOT EXISTS pending_join_deletions(chat_id bigint NOT NULL,message_id bigint NOT NULL,created_at timestamptz NOT NULL DEFAULT now(),PRIMARY KEY(chat_id,message_id));

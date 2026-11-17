@@ -7,7 +7,7 @@
 | 项目 / Check | 结果 / Result | 证据范围 / Scope |
 |---|---|---|
 | TypeScript + Vite | 通过 / Pass | 本地构建 / Local build |
-| 自动测试 / Automated tests | 27 通过 / Pass | initData、OTP、CAPTCHA、消息清理 / Authentication, OTP, CAPTCHA, cleanup |
+| 自动测试 / Automated tests | 28 通过 / Pass | initData、OTP、CAPTCHA、消息清理 / Authentication, OTP, CAPTCHA, cleanup |
 | 演示 API / Demo API | 8 场景通过 / Scenarios passed | 历史本地检查，无真实发信 / Prior local checks, no real delivery |
 | Mini App 浏览器 / Browser flow | 通过 / Pass | 邮箱错误、发送、OTP 错误、成功及恢复轮询 / Error, send, OTP and restore polling |
 | PostgreSQL + HTTPS | 已部署并健康 / Deployed and healthy | 生产运行检查 / Production health |
@@ -56,3 +56,9 @@ The deployment helper covers initialization, preflight, tests/build, Compose, HT
 新增记录 Telegram new_chat_members 消息 ID；验证成功、最终失败或超时后与欢迎提醒分别删除，并独立重试。chat_member 先到时，后到的系统消息会补关联已有会话。多人共用一条入群消息时，首个终态会话可删除整条系统消息，不影响其他人的专属验证提醒。旧消息未保存 ID，不能自动回溯；删除仍受 Telegram 权限及时间限制。
 
 Join service-message IDs are persisted and independently deleted/retried with terminal welcome cleanup. Late service updates attach to an existing session. A multi-member service message may be removed when the first linked session finishes; other members retain their individual verification reminders. Historical untracked messages cannot be recovered automatically; Telegram deletion permissions/time limits still apply.
+
+## 入群系统提示立即删除 · Immediate join-notice deletion
+
+入群系统消息现在在 Webhook 收到时立即删除，位于会话验证和成员类型判断之前；不等待验证成功、失败或超时。独立数据库队列在删除失败时重试，覆盖多人、机器人及无验证会话的入群通知。已有会话中记录的未删除系统消息也会立即补清理。专属验证提醒仍在终态清理。
+
+Join service messages are now deleted immediately on receipt, before session/member checks, independent of verification outcomes. A separate persistent queue retries failures, including multi-member/Bot joins and notices with no verification session. Previously tracked notices are retried immediately. Personal verification reminders retain terminal-state cleanup.
