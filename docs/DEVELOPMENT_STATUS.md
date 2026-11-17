@@ -7,7 +7,7 @@
 | 项目 / Check | 结果 / Result | 证据范围 / Scope |
 |---|---|---|
 | TypeScript + Vite | 通过 / Pass | 本地构建 / Local build |
-| 自动测试 / Automated tests | 26 通过 / Pass | initData、OTP、CAPTCHA、消息清理 / Authentication, OTP, CAPTCHA, cleanup |
+| 自动测试 / Automated tests | 27 通过 / Pass | initData、OTP、CAPTCHA、消息清理 / Authentication, OTP, CAPTCHA, cleanup |
 | 演示 API / Demo API | 8 场景通过 / Scenarios passed | 历史本地检查，无真实发信 / Prior local checks, no real delivery |
 | Mini App 浏览器 / Browser flow | 通过 / Pass | 邮箱错误、发送、OTP 错误、成功及恢复轮询 / Error, send, OTP and restore polling |
 | PostgreSQL + HTTPS | 已部署并健康 / Deployed and healthy | 生产运行检查 / Production health |
@@ -50,3 +50,9 @@ The real core flow covers joining, private-chat entry, Mini App, email delivery,
 新增 scripts/deploy.mjs：配置初始化、预检、测试构建、Compose 部署、HTTPS 健康检查及 Telegram Webhook/菜单设置。初始化及缺失配置保护已通过自动测试；尚未在全新 VPS 上完成一键部署端到端验收。现有生产服务未因本次文档与工具发布而重新部署。
 
 The deployment helper covers initialization, preflight, tests/build, Compose, HTTPS health and Bot webhook/menu configuration. Automated tests verify initialization and incomplete-config protection. A fresh-VPS end-to-end deployment remains untested. This documentation/tool release does not redeploy the existing production service.
+
+## 入群系统消息清理 · Join service-message cleanup
+
+新增记录 Telegram new_chat_members 消息 ID；验证成功、最终失败或超时后与欢迎提醒分别删除，并独立重试。chat_member 先到时，后到的系统消息会补关联已有会话。多人共用一条入群消息时，首个终态会话可删除整条系统消息，不影响其他人的专属验证提醒。旧消息未保存 ID，不能自动回溯；删除仍受 Telegram 权限及时间限制。
+
+Join service-message IDs are persisted and independently deleted/retried with terminal welcome cleanup. Late service updates attach to an existing session. A multi-member service message may be removed when the first linked session finishes; other members retain their individual verification reminders. Historical untracked messages cannot be recovered automatically; Telegram deletion permissions/time limits still apply.
