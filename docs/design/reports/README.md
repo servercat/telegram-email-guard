@@ -42,3 +42,9 @@ Existing scheduler and sendPhoto pipeline are preserved. Cleanup traps remove tr
 - 现有Bot已真实发送日报并获用户确认。本版只在临时目录生成预览，等待用户视觉确认后再切换生产模板/替换消息；未将渲染测试当成新版发送验收。
 
 Real PNG fixtures, side-by-side and overlay comparisons are included. Remaining differences include 3D icon shading and subtle lighting. This version is staged for owner review, not yet switched into production or sent to the group.
+
+## 生产确认 · Production approval
+
+2026-11-18 所有者确认本版设计，并授权替换当日群报告。已启用为 VPS 每日16:00模板，沿用既有发送目标、统计口径与无caption模式。
+
+Owner approved this design on 2026-11-18. Enabled as the daily 16:00 Asia/Shanghai VPS template, preserving statistics, destination and image-only delivery.
