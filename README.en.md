@@ -146,3 +146,5 @@ docs/                Architecture, deployment, validation and gallery
 - [Security](SECURITY.md)
 
 Production tokens, private keys, database backups and personal email test records are excluded from this repository.
+
+- [VPS daily group report](docs/DAILY_REPORT.md): server-side delivery at 16:00 Asia/Shanghai.

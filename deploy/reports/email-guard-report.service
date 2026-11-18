@@ -1,0 +1,8 @@
+[Unit]
+Description=Email Guard daily group statistics
+After=docker.service network-online.target
+Requires=docker.service
+[Service]
+Type=oneshot
+ExecStart=/bin/sh /opt/email-guard/deploy/reports/run.sh
+TimeoutStartSec=180

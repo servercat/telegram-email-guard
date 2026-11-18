@@ -7,3 +7,4 @@ CREATE TABLE IF NOT EXISTS audit_logs(id bigserial PRIMARY KEY,session_id uuid,e
 CREATE TABLE IF NOT EXISTS consumed_captcha_tokens(digest text PRIMARY KEY,created_at timestamptz NOT NULL DEFAULT now());
 
 CREATE TABLE IF NOT EXISTS pending_join_deletions(chat_id bigint NOT NULL,message_id bigint NOT NULL,created_at timestamptz NOT NULL DEFAULT now(),PRIMARY KEY(chat_id,message_id));
+CREATE TABLE IF NOT EXISTS daily_reports(chat_id bigint NOT NULL,window_end timestamptz NOT NULL,snapshot jsonb NOT NULL,state text NOT NULL DEFAULT 'ready',attempted_at timestamptz,message_id bigint,PRIMARY KEY(chat_id,window_end));
