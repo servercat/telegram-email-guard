@@ -44,3 +44,7 @@ Before retrying sending/review records, inspect the group for delivery, then del
 已验证：时间窗口单元测试、TypeScript 检查、VPS真实数据库取数及中文PNG预览。首次定时群投递以生产运行结果为准。
 
 Validated: window tests, TypeScript, real VPS database queries and a Chinese PNG preview. The first scheduled delivery still requires production confirmation.
+
+日报只发送图片，不附加 caption 文字；日期与统计均在图内。2026-11-18 所有者确认首次定时日报已收到。
+
+Reports are sent as image-only messages without a caption. The owner confirmed the first scheduled delivery on 2026-11-18.
