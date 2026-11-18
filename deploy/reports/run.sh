@@ -8,7 +8,7 @@ work=$(mktemp -d /var/lib/email-guard-reports/run.XXXXXX)
 cleanup() {
  rm -f "$work/report.json" "$work/report.png"
  rmdir "$work"
- docker exec email-guard-app-1 rm -f /tmp/daily-report.json /tmp/daily-report.png >/dev/null 2>&1 || true
+ docker exec -u 0 email-guard-app-1 rm -f /tmp/daily-report.json /tmp/daily-report.png >/dev/null 2>&1 || true
 }
 trap cleanup EXIT
 trap 'exit 1' HUP INT TERM
